@@ -413,9 +413,10 @@
             <div class="bg-lux_navy_light p-8 rounded-3xl border border-white/10 shadow-2xl">
                 <h3 class="font-heading text-2xl font-bold mb-6 text-center">Voluntariado y Patrocinios B2B</h3>
                 <form action="https://formsubmit.co/asociacioncreandosuenos@gmail.com" method="POST" class="space-y-4">
-                    <input type="text" placeholder="Nombre o Empresa" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors">
-                    <input type="email" placeholder="Correo Electrónico" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors">
-                    <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors appearance-none">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde la Web - Asociación Creando Sueños">
+                    <input type="text" name="Nombre" placeholder="Nombre o Empresa" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors">
+                    <input type="email" name="Email" placeholder="Correo Electrónico" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors">
+                    <select name="Tipo_Colaboracion" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors appearance-none">
                         <option value="" class="text-slate-800">¿Cómo deseas colaborar?</option>
                         <option value="voluntario" class="text-slate-800">Ser Voluntario en Brigadas</option>
                         <option value="patrocinio" class="text-slate-800">Patrocinar Equipo Deportivo (B2B)</option>
