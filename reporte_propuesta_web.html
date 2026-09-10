@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Ejecutiva • Asociación Creando Sueños</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        colombia_yellow: '#FFCD00',
+                        colombia_blue: '#003087',
+                        colombia_red: '#C8102E',
+                        brand_navy: '#001A44',
+                        dark_bg: '#080B11',
+                        dark_card: '#0F1626',
+                        accent_gold: '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            background-color: #06090F;
+            color: #E2E8F0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: scale(0.97) translateY(12px);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .glass-deck {
+            background: rgba(15, 22, 38, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+        .flag-top-bar {
+            background: linear-gradient(90deg, #FFCD00 0%, #FFCD00 45%, #003087 45%, #003087 75%, #C8102E 75%, #C8102E 100%);
+        }
+        .glow-yellow {
+            box-shadow: 0 0 35px rgba(255, 205, 0, 0.2);
+        }
+        .glow-blue {
+            box-shadow: 0 0 35px rgba(0, 48, 135, 0.3);
+        }
+        .badge-gradient {
+            background: linear-gradient(135deg, rgba(255,205,0,0.15), rgba(0,48,135,0.25));
+            border: 1px solid rgba(255,205,0,0.3);
+        }
+        .card-feature {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .card-feature:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 205, 0, 0.4);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between font-sans relative">
+
+    <!-- CINTA SUPERIOR TRICOLOR -->
+    <div class="flag-top-bar h-2 w-full fixed top-0 left-0 z-50"></div>
+
+    <!-- HEADER / CONTROL DE PRESENTACIÓN -->
+    <header class="glass-deck px-8 py-3.5 flex justify-between items-center z-40 border-b border-white/10 mt-2">
+        <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-colombia_yellow via-colombia_blue to-colombia_red p-[2px] shadow-md">
+                <div class="w-full h-full bg-dark_bg rounded-[10px] flex items-center justify-center">
+                    <i class="fa-solid fa-hands-holding-child text-colombia_yellow text-lg"></i>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-heading font-black text-base text-white tracking-wide flex items-center gap-2">
+                    CREANDO SUEÑOS
+                    <span class="text-[9px] px-2 py-0.5 rounded-full bg-colombia_yellow/20 text-colombia_yellow font-bold uppercase tracking-wider border border-colombia_yellow/30">Propuesta Web 2026</span>
+                </h1>
+                <p class="text-[11px] text-slate-400 font-medium">Presentación Ejecutiva • Edilma Saraza</p>
+            </div>
+        </div>
+
+        <!-- PROGRESS & NAV BUTTONS -->
+        <div class="flex items-center gap-4">
+            <!-- Indicador de Diapositiva -->
+            <div class="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 text-xs font-mono font-bold text-slate-300">
+                <span id="current-slide-num" class="text-colombia_yellow">1</span>
+                <span class="text-slate-500">/</span>
+                <span id="total-slides-num">6</span>
+            </div>
+
+            <!-- Botones Anterior / Siguiente -->
+            <div class="flex items-center gap-1.5">
+                <button onclick="prevSlide()" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-200 flex items-center justify-center transition-all active:scale-95" title="Anterior (Flecha Izquierda)">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button onclick="nextSlide()" class="w-9 h-9 rounded-xl bg-colombia_yellow hover:bg-yellow-400 text-slate-950 font-black flex items-center justify-center transition-all shadow-md shadow-amber-400/20 active:scale-95" title="Siguiente (Flecha Derecha o Espacio)">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Botón Modo Pantalla Completa & Ver Web Real -->
+            <a href="index.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-colombia_blue hover:bg-blue-800 text-white text-xs font-bold transition-all flex items-center gap-2 border border-blue-400/30">
+                <i class="fa-solid fa-globe text-colombia_yellow"></i> Ver Web en Vivo
+            </a>
+            <button onclick="toggleFullScreen()" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 flex items-center justify-center transition-all" title="Pantalla Completa (F)">
+                <i class="fa-solid fa-expand text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- BARRA DE PROGRESO DE LA PRESENTACIÓN -->
+    <div class="w-full bg-slate-800/40 h-1">
+        <div id="progress-bar" class="bg-gradient-to-r from-colombia_yellow via-colombia_blue to-colombia_red h-full transition-all duration-300" style="width: 16.66%;"></div>
+    </div>
+
+    <!-- ÁREA DE CONTENIDO DE SLIDES -->
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-center overflow-hidden">
+        
+        <!-- ==========================================
+             SLIDE 1: PORTADA & BIENVENIDA
+             ========================================== -->
+        <section class="slide active w-full h-full flex-col justify-center items-center text-center space-y-7" data-index="1">
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full badge-gradient text-colombia_yellow text-xs font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-flag text-sm"></i> Alianza Estratégica Digital • Madrid 2026
+            </div>
+            
+            <div class="space-y-3 max-w-4xl">
+                <h2 class="font-heading text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight">
+                    Construyendo la <span class="text-transparent bg-clip-text bg-gradient-to-r from-colombia_yellow via-yellow-200 to-amber-400">Presencia Digital</span> de Nuestra Comunidad
+                </h2>
+                <p class="text-slate-300 text-lg md:text-xl font-normal max-w-2xl mx-auto leading-relaxed pt-2">
+                    Propuesta de arquitectura y desarrollo web oficial para la <strong class="text-white">Asociación Creando Sueños Migrantes por el Mundo</strong>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-3xl pt-4">
+                <div class="glass-deck p-4 rounded-2xl border border-white/10 text-left flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-colombia_yellow/20 flex items-center justify-center text-colombia_yellow text-lg font-bold">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-slate-400 font-semibold uppercase">Dirección</p>
+                        <p class="text-sm font-bold text-white">Edilma Saraza</p>
+                    </div>
+                </div>
+                <div class="glass-deck p-4 rounded-2xl border border-white/10 text-left flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 text-lg font-bold">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-slate-400 font-semibold uppercase">Ingeniería Web</p>
+                        <p class="text-sm font-bold text-white">Daniel Sid</p>
+                    </div>
+                </div>
+                <div class="glass-deck p-4 rounded-2xl border border-white/10 text-left flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg font-bold">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-slate-400 font-semibold uppercase">Lanzamiento</p>
+                        <p class="text-sm font-bold text-white">Septiembre 2026</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 text-xs text-slate-400 flex items-center gap-2">
+                <kbd class="px-2 py-1 bg-white/10 rounded border border-white/20 font-mono text-[10px] text-slate-200">ESPACIO</kbd> o <kbd class="px-2 py-1 bg-white/10 rounded border border-white/20 font-mono text-[10px] text-slate-200">→</kbd> para avanzar
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 2: EL PROPÓSITO & EL RETO
+             ========================================== -->
+        <section class="slide w-full h-full flex-col justify-center space-y-6" data-index="2">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-colombia_yellow/10 border border-colombia_yellow/30 text-colombia_yellow text-xs font-bold uppercase tracking-wider w-fit">
+                <i class="fa-solid fa-bullseye"></i> 1. El Propósito Central
+            </div>
+
+            <h2 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight">
+                "Migrar no tiene que significar <span class="text-colombia_yellow underline decoration-colombia_red decoration-4 underline-offset-8">estar solo</span>"
+            </h2>
+            
+            <p class="text-slate-300 text-base md:text-lg max-w-3xl leading-relaxed">
+                La asociación realiza una labor humana extraordinaria en Madrid. Una plataforma web propia transforma esa presencia comunitaria en una **institución formal, visible y respetada** ante organismos públicos, empresas colaboradoras y nuevos migrantes.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                <div class="glass-deck p-6 rounded-3xl border border-white/10 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-colombia_yellow text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-lg text-white">Autoridad & Confianza</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Proyecta seriedad jurídica e institucional para solicitar subvenciones, patrocinios y convenios oficiales (SENA, Consulados, ONGs).
+                    </p>
+                </div>
+
+                <div class="glass-deck p-6 rounded-3xl border border-white/10 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-lg text-white">Captación de Ayudas</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Facilita la entrada de donaciones transparentes por Bizum, Tarjeta y Transferencia, sumando nuevos socios y voluntarios.
+                    </p>
+                </div>
+
+                <div class="glass-deck p-6 rounded-3xl border border-white/10 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-colombia_red text-xl">
+                        <i class="fa-solid fa-futbol"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-lg text-white">Impulso a "La Banda"</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Sección deportiva propia para el club de fútbol: fotos del uniforme tricolor, calendario de partidos, fichas y convocatorias.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 3: LOS 12 MÓDULOS DE LA PLATAFORMA
+             ========================================== -->
+        <section class="slide w-full h-full flex-col justify-center space-y-5" data-index="3">
+            <div class="flex justify-between items-end">
+                <div class="space-y-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-cubes"></i> 2. Arquitectura Integral
+                    </div>
+                    <h2 class="font-heading text-3xl md:text-4xl font-black text-white">
+                        12 Módulos Especializados en una Sola Web
+                    </h2>
+                </div>
+                <span class="text-xs text-slate-400 font-mono hidden md:block">Todo incluido • Cero costes ocultos</span>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 pt-1">
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-scale-balanced text-colombia_yellow text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Orientación Extranjería</p>
+                    <p class="text-[11px] text-slate-400">Arraigo, Asilo, NIE y Homologación.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-futbol text-emerald-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">La Banda F.C. ⚽</p>
+                    <p class="text-[11px] text-slate-400">Página deportiva, torneos y fotos.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-box-open text-colombia_red text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Brigadas Solidarias</p>
+                    <p class="text-[11px] text-slate-400">Ropa, alimentos, salud y barbería.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-person-chalkboard text-blue-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Formación & Empleo</p>
+                    <p class="text-[11px] text-slate-400">Convenios SENA, CV y talleres.</p>
+                </div>
+
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-person-dress text-pink-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Mujeres Migrantes</p>
+                    <p class="text-[11px] text-slate-400">Empoderamiento e integración.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-hand-holding-dollar text-emerald-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Pasarela Donaciones</p>
+                    <p class="text-[11px] text-slate-400">Bizum, Tarjeta y Transferencia.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-brands fa-whatsapp text-green-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">WhatsApp Directo 24/7</p>
+                    <p class="text-[11px] text-slate-400">Botón flotante con 1 solo clic.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-users-viewfinder text-amber-300 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Historias de Vida</p>
+                    <p class="text-[11px] text-slate-400">Testimonios reales que inspiran.</p>
+                </div>
+
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-lightbulb text-yellow-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Emprendimiento</p>
+                    <p class="text-[11px] text-slate-400">Apoyo a negocios autónomos.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-images text-purple-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Galería Multimedia</p>
+                    <p class="text-[11px] text-slate-400">Fotos de eventos y velitas.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-calendar-days text-cyan-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Agenda & Eventos</p>
+                    <p class="text-[11px] text-slate-400">Calendario de partidos y citas.</p>
+                </div>
+                <div class="card-feature p-3.5 rounded-2xl">
+                    <i class="fa-solid fa-shield-heart text-indigo-400 text-base mb-1.5 block"></i>
+                    <p class="font-bold text-white text-xs">Seguros & Alianzas</p>
+                    <p class="text-[11px] text-slate-400">Convenios y patrocinadores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 4: VISTA PREVIA DEL DISEÑO
+             ========================================== -->
+        <section class="slide w-full h-full flex-col justify-center space-y-6" data-index="4">
+            <div class="space-y-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-palette"></i> 3. Identidad Visual & Demostración
+                </div>
+                <h2 class="font-heading text-3xl md:text-4xl font-black text-white">
+                    Diseño Limpio, Moderno y 100% Adaptado a Móviles
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Tarjeta Demo Visual (7 cols) -->
+                <div class="lg:col-span-7 glass-deck rounded-3xl p-6 border border-white/15 relative overflow-hidden group">
+                    <div class="flex items-center justify-between pb-4 border-b border-white/10 text-xs text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                            <span class="ml-2 font-mono text-[11px] text-slate-300">asociacioncreandosuenos.org</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">HTTPS / SSL Seguro</span>
+                    </div>
+
+                    <div class="py-6 space-y-4 text-left">
+                        <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-colombia_yellow text-xs font-bold border border-amber-500/30">
+                            🇨🇴 Asociación Sin Ánimo de Lucro en España
+                        </span>
+                        <h3 class="font-heading text-2xl md:text-3xl font-black text-white leading-tight">
+                            Migrar no tiene que significar <span class="text-blue-400 underline decoration-colombia_yellow">estar solo.</span>
+                        </h3>
+                        <p class="text-slate-300 text-xs md:text-sm leading-relaxed">
+                            Acompañamos a personas migrantes en España creando comunidad, oportunidades y espacios de apoyo para construir una nueva vida.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button class="px-4 py-2 rounded-xl bg-colombia_yellow text-slate-950 font-black text-xs shadow-md">
+                                <i class="fa-solid fa-user-plus mr-1"></i> QUIERO UNIRME
+                            </button>
+                            <button class="px-4 py-2 rounded-xl bg-colombia_red text-white font-bold text-xs shadow-md">
+                                <i class="fa-solid fa-heart mr-1"></i> DONAR
+                            </button>
+                            <button class="px-4 py-2 rounded-xl bg-white/10 text-slate-200 font-bold text-xs border border-white/20">
+                                <i class="fa-brands fa-whatsapp text-green-400 mr-1"></i> 642 49 97 98
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Puntos Clave de Tecnología (5 cols) -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="glass-deck p-4 rounded-2xl border border-white/10 flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-xl bg-colombia_yellow/20 flex-shrink-0 flex items-center justify-center text-colombia_yellow">
+                            <i class="fa-solid fa-bolt text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-xs">Carga Ultrarrápida</p>
+                            <p class="text-[11px] text-slate-400">Sin lentitud de WordPress. Abre al instante en cualquier teléfono con 4G/5G.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-deck p-4 rounded-2xl border border-white/10 flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-xl bg-blue-500/20 flex-shrink-0 flex items-center justify-center text-blue-400">
+                            <i class="fa-solid fa-mobile-screen-button text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-xs">100% Móvil (Responsive)</p>
+                            <p class="text-[11px] text-slate-400">Diseñado pensando en que el 90% de los migrantes navegan desde su smartphone.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-deck p-4 rounded-2xl border border-white/10 flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 flex-shrink-0 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-envelope-circle-check text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-xs">Correos Corporativos</p>
+                            <p class="text-[11px] text-slate-400">Emails oficiales como <code>info@asociacioncreandosuenos.org</code> para trámites y cartas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 5: PROPUESTA ECONÓMICA & PAGOS
+             ========================================== -->
+        <section class="slide w-full h-full flex-col justify-center space-y-6" data-index="5">
+            <div class="space-y-1 text-center max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-colombia_yellow/10 border border-colombia_yellow/30 text-colombia_yellow text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-hand-holding-dollar"></i> 4. Propuesta Económica & Facilidades
+                </div>
+                <h2 class="font-heading text-3xl md:text-5xl font-black text-white">
+                    Inversión Clara, Transparente y Accesible
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto w-full pt-2">
+                <!-- TARJETA DESARROLLO (200€) -->
+                <div class="glass-deck p-7 rounded-3xl border-2 border-colombia_yellow/50 relative overflow-hidden yellow-glow flex flex-col justify-between space-y-5">
+                    <div class="space-y-3">
+                        <span class="px-3 py-1 rounded-full bg-colombia_yellow/20 text-colombia_yellow text-[10px] font-black uppercase tracking-widest border border-colombia_yellow/40">
+                            Desarrollo & Maquetación Completa
+                        </span>
+                        <div class="flex items-baseline gap-2 pt-1">
+                            <span class="font-heading text-5xl font-black text-white">200 €</span>
+                            <span class="text-xs text-slate-400 font-medium">Pago único de proyecto</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200">
+                            <p class="font-bold flex items-center gap-1.5 mb-1">
+                                <i class="fa-solid fa-gift text-colombia_yellow"></i> Facilidad de Pago en 2 Cuotas:
+                            </p>
+                            <p class="text-[11px] text-slate-300">• <strong>100 €</strong> de anticipo al iniciar los trabajos.</p>
+                            <p class="text-[11px] text-slate-300">• <strong>100 €</strong> en Octubre al recaudar cuotas del club.</p>
+                        </div>
+                        <ul class="text-xs text-slate-300 space-y-2 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-colombia_yellow text-[11px]"></i> 12 Módulos completos maquetados.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-colombia_yellow text-[11px]"></i> Botón flotante WhatsApp 24/7 integrado.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-colombia_yellow text-[11px]"></i> Pasarela de Donaciones (Bizum / Tarjeta).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- TARJETA HOSTING & DOMINIO (99€) -->
+                <div class="glass-deck p-7 rounded-3xl border border-white/15 relative overflow-hidden flex flex-col justify-between space-y-5">
+                    <div class="space-y-3">
+                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-black uppercase tracking-widest border border-blue-500/30">
+                            Infraestructura Anual
+                        </span>
+                        <div class="flex items-baseline gap-2 pt-1">
+                            <span class="font-heading text-5xl font-black text-white">99 €</span>
+                            <span class="text-xs text-slate-400 font-medium">/ año (o 10 €/mes)</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Mantiene la página web activa las 24 horas del día con la máxima velocidad, seguridad blindada y soporte continuo.
+                        </p>
+                        <ul class="text-xs text-slate-300 space-y-2 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-blue-400 text-[11px]"></i> Dominio oficial (<code>.org</code> o <code>.es</code>) incluido.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-blue-400 text-[11px]"></i> Servidor Cloud SSD de alta velocidad.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-blue-400 text-[11px]"></i> Certificado SSL (candado verde de seguridad).</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-blue-400 text-[11px]"></i> Correos corporativos profesionales.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-blue-400 text-[11px]"></i> Copias de seguridad automáticas y mantenimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 6: CRONOGRAMA & CIERRE
+             ========================================== -->
+        <section class="slide w-full h-full flex-col justify-center items-center text-center space-y-7" data-index="6">
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-rocket"></i> 5. Puesta en Marcha Inmediata
+            </div>
+
+            <div class="space-y-3 max-w-3xl">
+                <h2 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight">
+                    ¿Listos para hacer <span class="text-transparent bg-clip-text bg-gradient-to-r from-colombia_yellow via-yellow-200 to-amber-400">Crecer la Asociación?</span>
+                </h2>
+                <p class="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    Cronograma de entrega en **7 días laborables** desde el anticipo inicial.
+                </p>
+            </div>
+
+            <!-- PASOS DEL CRONOGRAMA -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-4xl pt-2 text-left">
+                <div class="glass-deck p-5 rounded-2xl border border-white/10 space-y-2">
+                    <span class="w-8 h-8 rounded-full bg-colombia_yellow text-slate-950 font-black text-xs flex items-center justify-center font-mono">1</span>
+                    <p class="font-bold text-white text-sm">Día 1: Registro & Dominio</p>
+                    <p class="text-xs text-slate-400">Alta del dominio oficial, correos corporativos y configuración del servidor.</p>
+                </div>
+                <div class="glass-deck p-5 rounded-2xl border border-white/10 space-y-2">
+                    <span class="w-8 h-8 rounded-full bg-colombia_blue text-white font-black text-xs flex items-center justify-center font-mono">2</span>
+                    <p class="font-bold text-white text-sm">Día 2-4: Contenidos & La Banda</p>
+                    <p class="text-xs text-slate-400">Carga de fotos del equipo, textos de extranjería, brigadas y testimonios.</p>
+                </div>
+                <div class="glass-deck p-5 rounded-2xl border border-white/10 space-y-2">
+                    <span class="w-8 h-8 rounded-full bg-colombia_red text-white font-black text-xs flex items-center justify-center font-mono">3</span>
+                    <p class="font-bold text-white text-sm">Día 5-7: Publicación Oficial</p>
+                    <p class="text-xs text-slate-400">Pruebas en móviles, activación de donaciones y lanzamiento en redes sociales.</p>
+                </div>
+            </div>
+
+            <!-- BOTÓN DE CIERRE -->
+            <div class="pt-4 flex flex-col sm:flex-row items-center gap-4 justify-center">
+                <a href="https://wa.me/34641868620?text=Hola%20Daniel,%20aprobamos%20la%20propuesta%20de%20la%20web%20para%20la%20Asociaci%C3%B3n%20Creando%20Sue%C3%B1os" target="_blank" class="px-8 py-3.5 rounded-2xl bg-colombia_yellow hover:bg-yellow-400 text-slate-950 font-heading font-black text-sm shadow-xl shadow-amber-400/20 transition-all flex items-center gap-2.5 active:scale-95">
+                    <i class="fa-solid fa-circle-check text-base"></i> CONFIRMAR Y COMENZAR HOY
+                </a>
+                <a href="index.html" target="_blank" class="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-desktop text-colombia_yellow"></i> Explorar Demo Web
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER / MINIATURAS & ACCESOS DIRECTOS -->
+    <footer class="glass-deck px-8 py-3 flex justify-between items-center z-40 border-t border-white/10">
+        <!-- SELECTOR DE SLIDES EN MINIATURA -->
+        <div class="flex items-center gap-2">
+            <button onclick="goToSlide(1)" class="slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-colombia_yellow text-slate-950" data-target="1">1. Portada</button>
+            <button onclick="goToSlide(2)" class="slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/15 text-slate-400" data-target="2">2. Propósito</button>
+            <button onclick="goToSlide(3)" class="slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/15 text-slate-400" data-target="3">3. Módulos</button>
+            <button onclick="goToSlide(4)" class="slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/15 text-slate-400" data-target="4">4. Diseño</button>
+            <button onclick="goToSlide(5)" class="slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/15 text-slate-400" data-target="5">5. Precios</button>
+            <button onclick="goToSlide(6)" class="slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/15 text-slate-400" data-target="6">6. Cierre</button>
+        </div>
+
+        <div class="text-[11px] text-slate-400 font-medium hidden sm:block">
+            Asociación Creando Sueños • Contacto: <strong class="text-white font-mono">642 49 97 98</strong>
+        </div>
+    </footer>
+
+    <!-- LOGICA DE CONTROL DE LA PRESENTACIÓN -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function showSlide(index) {
+            if (index < 1) index = 1;
+            if (index > totalSlides) index = totalSlides;
+            currentSlide = index;
+
+            // Actualizar visibilidad de slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            const activeSlide = document.querySelector(`.slide[data-index="${currentSlide}"]`);
+            if (activeSlide) activeSlide.classList.add('active');
+
+            // Actualizar indicador
+            document.getElementById('current-slide-num').innerText = currentSlide;
+
+            // Actualizar barra de progreso
+            const percent = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress-bar').style.width = percent + '%';
+
+            // Actualizar botones de footer
+            document.querySelectorAll('.slide-dot').forEach(btn => {
+                const target = parseInt(btn.getAttribute('data-target'));
+                if (target === currentSlide) {
+                    btn.className = 'slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-colombia_yellow text-slate-950 shadow-md';
+                } else {
+                    btn.className = 'slide-dot px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/15 text-slate-400';
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log('Error attempting to enable full-screen mode: ' + err.message);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Navegación por teclado para videollamadas fluidas
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+                prevSlide();
+            } else if (e.key >= '1' && e.key <= '6') {
+                goToSlide(parseInt(e.key));
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullScreen();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asociación Creando Sueños • Migrantes por el Mundo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome & Fonts -->
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        lux_navy: '#0B132B',
+                        lux_navy_light: '#1C2541',
+                        lux_gold: '#D4AF37',
+                        lux_gold_light: '#F3E5AB',
+                        lux_red: '#9E2A2B',
+                        lux_green: '#2D6A4F',
+                        lux_bg: '#FAFAFA',
+                        lux_surface: '#FFFFFF',
+                    },
+                    boxShadow: {
+                        'lux': '0 20px 40px -15px rgba(11, 19, 43, 0.08)',
+                        'lux-hover': '0 30px 60px -20px rgba(11, 19, 43, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAFAFA;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #B58A1C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .flag-accent-bar {
+            background: linear-gradient(90deg, #D4AF37 0%, #D4AF37 40%, #0B132B 40%, #0B132B 75%, #9E2A2B 75%, #9E2A2B 100%);
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px -20px rgba(11, 19, 43, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-600">
+
+    <!-- BARRA TOP BANDERA -->
+    <div class="flag-accent-bar h-1.5 w-full fixed top-0 z-50"></div>
+
+    <!-- NAVBAR PREMIUM -->
+    <header class="fixed top-1.5 w-full z-40 glass-nav transition-all duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <a href="#" class="flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl bg-lux_navy flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-500">
+                    <i class="fa-solid fa-hands-holding-child text-lux_gold text-2xl"></i>
+                </div>
+                <div>
+                    <span class="font-heading font-black text-2xl text-lux_navy tracking-tight block leading-none">Creando Sueños</span>
+                    <span class="text-[10px] text-lux_gold font-bold uppercase tracking-[0.2em] block mt-1">Migrantes por el Mundo</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold text-slate-500 uppercase tracking-widest">
+                <a href="#inicio" class="text-lux_navy font-bold">Inicio</a>
+                <a href="#nosotros" class="hover:text-lux_gold transition-colors">Nosotros</a>
+                <a href="#servicios" class="hover:text-lux_gold transition-colors">Servicios</a>
+                <a href="#comunidad" class="hover:text-lux_gold transition-colors">Comunidad</a>
+                <a href="#donar" class="hover:text-lux_gold transition-colors">Donar</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/34642499798" target="_blank" class="hidden md:flex items-center gap-2 text-xs font-bold text-lux_navy hover:text-lux_gold transition-colors">
+                    <i class="fa-solid fa-phone"></i> 642 49 97 98
+                </a>
+                <a href="#donar" class="px-6 py-2.5 rounded-full bg-lux_navy hover:bg-lux_navy_light text-white font-heading font-bold text-xs uppercase tracking-widest shadow-xl hover:shadow-lux_navy/30 transition-all">
+                    Unirse
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. INICIO (HERO) -->
+    <section id="inicio" class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-white hero-pattern">
+        <!-- Glow effects -->
+        <div class="absolute top-20 left-0 w-[500px] h-[500px] bg-lux_gold/10 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-lux_navy/5 rounded-full blur-[120px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-lux_gold/30 bg-lux_gold/5 text-lux_gold text-[10px] font-bold uppercase tracking-widest">
+                    <span class="w-2 h-2 rounded-full bg-lux_gold animate-pulse"></span>
+                    ONG Registrada en Madrid
+                </div>
+
+                <h1 class="font-heading text-5xl lg:text-7xl font-black text-lux_navy leading-[1.1] tracking-tight">
+                    Migrar no debe ser <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-lux_gold to-yellow-600">sinónimo de soledad.</span>
+                </h1>
+
+                <p class="text-lg text-slate-500 font-light leading-relaxed max-w-lg">
+                    Acompañamos a la comunidad migrante en España. Fortalecemos tu inclusión, bienestar, autonomía económica y dignidad.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-5 pt-4">
+                    <a href="https://wa.me/34642499798" class="px-8 py-4 rounded-full bg-lux_gold hover:bg-yellow-600 text-white font-heading font-bold text-sm uppercase tracking-widest shadow-xl shadow-lux_gold/30 transition-all transform hover:-translate-y-1 flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Asesoría Gratuita
+                    </a>
+                    <a href="#nosotros" class="px-8 py-4 rounded-full bg-transparent border border-slate-200 hover:border-lux_navy text-lux_navy font-heading font-bold text-sm uppercase tracking-widest transition-all">
+                        Nuestra Historia
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bento Grid Hero Images -->
+            <div class="grid grid-cols-2 gap-4 relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-lux_navy/5 to-transparent rounded-3xl -z-10 transform translate-x-4 translate-y-4"></div>
+                <div class="space-y-4 pt-12">
+                    <div class="h-64 rounded-3xl bg-slate-200 overflow-hidden shadow-lux group relative">
+                        <!-- Placeholder for Real Photo -->
+                        <div class="absolute inset-0 bg-lux_navy/10 group-hover:bg-transparent transition-colors"></div>
+                        <img src="./assets/hero_comunidad.jpg" alt="Comunidad" class="w-full h-full object-cover">
+                    </div>
+                    <div class="glass-card rounded-3xl p-6 shadow-lux">
+                        <h4 class="font-heading font-bold text-lux_navy text-2xl mb-1">+1.2k</h4>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Vidas Impactadas</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="glass-card rounded-3xl p-6 shadow-lux bg-lux_navy text-white">
+                        <i class="fa-solid fa-hand-holding-heart text-lux_gold text-3xl mb-4"></i>
+                        <h4 class="font-heading font-bold text-xl mb-2">Comunidad</h4>
+                        <p class="text-sm font-light text-slate-300 opacity-90">Construimos lazos inquebrantables.</p>
+                    </div>
+                    <div class="h-80 rounded-3xl bg-slate-200 overflow-hidden shadow-lux group relative">
+                         <div class="absolute inset-0 bg-lux_gold/10 group-hover:bg-transparent transition-colors"></div>
+                        <img src="./assets/hero_apoyo.jpg" alt="Apoyo" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. QUIÉNES SOMOS -->
+    <section id="nosotros" class="py-24 bg-lux_navy text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="relative">
+                <div class="w-24 h-24 absolute -top-12 -left-12 bg-lux_gold rounded-full blur-[60px] opacity-50"></div>
+                <div class="bg-lux_navy_light rounded-[2.5rem] p-10 border border-white/10 shadow-2xl relative z-10">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-lux_gold to-yellow-600 p-1">
+                            <div class="w-full h-full bg-lux_navy rounded-full flex items-center justify-center font-heading font-black text-2xl">ES</div>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-2xl font-bold text-white">Edilma Saraza</h3>
+                            <p class="text-lux_gold text-sm font-semibold tracking-wider uppercase mt-1">Fundadora & Directora</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 font-light leading-relaxed text-lg italic">
+                        "Nací colombiana y migrante. Tras vivir en carne propia los inmensos desafíos de comenzar desde cero en España, sin una red de apoyo, decidí fundar esta asociación. Mi objetivo es que nadie más tenga que caminar en soledad."
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-10">
+                <div>
+                    <span class="text-lux_gold text-xs font-bold uppercase tracking-[0.2em]">Nuestra Identidad</span>
+                    <h2 class="font-heading text-4xl lg:text-5xl font-black mt-2 mb-6">El propósito que nos mueve</h2>
+                    <p class="text-slate-300 font-light leading-relaxed">
+                        Fortalecemos la integración, la autonomía económica y la legalización de los migrantes en España. Creemos en una sociedad donde la diversidad suma.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="border-l-2 border-lux_gold pl-4">
+                        <h4 class="font-heading font-bold text-lg mb-1">Misión</h4>
+                        <p class="text-sm text-slate-400 font-light">Acompañar integralmente a personas migrantes.</p>
+                    </div>
+                    <div class="border-l-2 border-lux_gold pl-4">
+                        <h4 class="font-heading font-bold text-lg mb-1">Valores</h4>
+                        <p class="text-sm text-slate-400 font-light">Solidaridad, Dignidad y Empoderamiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICIOS CLAVE (BENTO GRID) -->
+    <section id="servicios" class="py-24 bg-lux_bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-lux_navy text-xs font-bold uppercase tracking-[0.2em]">Cómo te ayudamos</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-black text-lux_navy mt-2">Apoyo 360º para tu nueva vida</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Módulo 3: Extranjería -->
+                <div class="bento-card bg-white rounded-3xl p-8 border border-slate-100 shadow-lux lg:row-span-2 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-lux_navy/5 text-lux_navy flex items-center justify-center text-2xl mb-6 group-hover:bg-lux_navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-lux_navy mb-4">Orientación Migratoria & Extranjería</h3>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-lux_gold mt-1"></i> Arraigo Social, Laboral y Familiar.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-lux_gold mt-1"></i> Estancia por estudios.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-lux_gold mt-1"></i> Matrimonios y Parejas de Hecho.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-lux_gold mt-1"></i> Trámites de NIE y recursos.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-lux_gold mt-1"></i> Homologación de títulos oficiales.</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/34642499798" class="mt-8 text-lux_navy font-bold text-sm hover:text-lux_gold flex items-center gap-2">Asesorarse ahora <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Módulo 4: Formación -->
+                <div class="bento-card bg-white rounded-3xl p-8 border border-slate-100 shadow-lux group">
+                    <div class="w-12 h-12 rounded-2xl bg-lux_gold/10 text-lux_gold flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-lux_navy mb-2">Formación & Empleo</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Convenios con entidades de formación, orientación para CV, preparación de entrevistas y alianzas de inserción laboral.</p>
+                </div>
+
+                <!-- Módulo 5: Emprendimiento -->
+                <div class="bento-card bg-lux_navy text-white rounded-3xl p-8 shadow-lux group">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-lightbulb text-lux_gold"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-2">Emprendimiento</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">Asesoría especializada para migrantes que deseen desarrollar un oficio autónomo o proyecto productivo en España.</p>
+                </div>
+
+                <!-- Módulo 6: Mujeres -->
+                <div class="bento-card bg-white rounded-3xl p-8 border border-slate-100 shadow-lux group">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-50 text-lux_red flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-venus"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-lux_navy mb-2">Mujeres Migrantes</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Talleres y programas orientados a fortalecer la autonomía y empoderamiento de la mujer migrante.</p>
+                </div>
+
+                <!-- Módulo 9: Seguros -->
+                <div class="bento-card bg-white rounded-3xl p-8 border border-slate-100 shadow-lux group">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-lux_green flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-lux_navy mb-2">Seguros</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Acceso a seguros médicos requeridos en trámites de extranjería mediante colaboradores oficiales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 & 8 COMUNIDAD, DEPORTE Y BRIGADAS -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+                <!-- La Banda -->
+                <div class="relative rounded-[2.5rem] bg-lux_navy overflow-hidden p-10 flex flex-col justify-end min-h-[400px] shadow-2xl group">
+                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518605368461-1ee7e5f39645?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center opacity-30 mix-blend-luminosity group-hover:opacity-40 transition-opacity duration-700"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-lux_navy via-lux_navy/80 to-transparent"></div>
+                    <div class="relative z-10">
+                        <span class="inline-block px-3 py-1 bg-lux_gold text-lux_navy text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">Deporte e Integración</span>
+                        <h3 class="font-heading text-4xl font-black text-white mb-3">Equipo "La Banda" ⚽</h3>
+                        <p class="text-slate-300 text-sm mb-6 max-w-md">Nuestro equipo oficial participando en torneos de Madrid. Representa la pasión y unión con nuestro uniforme tricolor exclusivo "Cóndor Real".</p>
+                        <a href="https://wa.me/34642499798" class="text-white font-bold text-sm flex items-center gap-2 hover:text-lux_gold transition-colors">Ver Calendario de Partidos <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Brigadas -->
+                <div class="flex flex-col justify-center space-y-6">
+                    <span class="text-lux_red text-xs font-bold uppercase tracking-[0.2em]">Impacto Directo</span>
+                    <h2 class="font-heading text-4xl md:text-5xl font-black text-lux_navy">Brigadas Solidarias</h2>
+                    <p class="text-slate-500 leading-relaxed">
+                        Organizamos jornadas comunitarias de apoyo gratuito para personas en situación de alta vulnerabilidad. Creemos en la ayuda mutua como pilar fundamental de nuestra asociación.
+                    </p>
+                    <ul class="space-y-4 pt-4">
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-full bg-red-100 text-lux_red flex items-center justify-center"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <span class="font-semibold text-slate-700">Brigadas de Salud y Atención Social</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center"><i class="fa-solid fa-utensils"></i></div>
+                            <span class="font-semibold text-slate-700">Donación de Alimentos y Ropa</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-scissors"></i></div>
+                            <span class="font-semibold text-slate-700">Peluquería, Barbería y Estética</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 11. Nuestra Comunidad (Mini Galería) -->
+            <div id="comunidad" class="text-center mb-10 pt-10 border-t border-slate-100">
+                <h2 class="font-heading text-3xl font-black text-lux_navy mb-2">Aquí los sueños se construyen juntos</h2>
+                <p class="text-slate-500 text-sm">Eventos, Navidad, Día de Velitas y salidas familiares.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden"><img src="./assets/comunidad1.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Evento"></div>
+                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden"><img src="./assets/comunidad2.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Comunidad"></div>
+                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden"><img src="./assets/comunidad3.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Familia"></div>
+                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden flex items-center justify-center bg-lux_navy text-white text-center p-6 group cursor-pointer hover:bg-lux_navy_light transition-colors">
+                    <div>
+                        <i class="fa-brands fa-instagram text-3xl text-lux_gold mb-2 group-hover:scale-125 transition-transform"></i>
+                        <p class="font-bold text-sm">Ver más en <br>Instagram</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 10. HISTORIAS QUE INSPIRAN -->
+    <section class="py-24 bg-lux_bg border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <i class="fa-solid fa-quote-left text-4xl text-lux_gold/30 mb-4"></i>
+                <h2 class="font-heading text-4xl font-black text-lux_navy">Historias que Inspiran</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-3xl shadow-lux border border-slate-100">
+                    <div class="flex gap-1 text-lux_gold mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 font-light italic mb-6">"Llegué sin papeles y sin conocer a nadie. Gracias a la asociación logré tramitar mi arraigo, formarme e insertarme en el mundo laboral. Me devolvieron la dignidad."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-200"></div>
+                        <div>
+                            <p class="font-bold text-lux_navy text-sm">María Fernanda</p>
+                            <p class="text-xs text-slate-400">Logró su Residencia en 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-lux border border-slate-100">
+                    <div class="flex gap-1 text-lux_gold mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 font-light italic mb-6">"Encontrar el equipo La Banda me dio una familia los fines de semana. Además, con sus brigadas de salud pude revisar mi vista gratis cuando más lo necesitaba."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-200"></div>
+                        <div>
+                            <p class="font-bold text-lux_navy text-sm">Carlos Andrés</p>
+                            <p class="text-xs text-slate-400">Deportista y Miembro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. DONACIONES, VOLUNTARIADO Y B2B -->
+    <section id="donar" class="py-24 bg-lux_navy text-white relative overflow-hidden">
+        <div class="absolute inset-0 hero-pattern opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="space-y-6">
+                <h2 class="font-heading text-4xl lg:text-5xl font-black">Haz parte del cambio</h2>
+                <p class="text-slate-300 font-light text-lg">Tu aporte económico o tu tiempo como voluntario permiten que nuestras brigadas y asesorías sigan siendo gratuitas para quienes más lo necesitan.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button class="px-8 py-4 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-heading font-bold text-sm uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-mobile-screen"></i> Bizum: 642 49 97 98
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-lux_navy_light p-8 rounded-3xl border border-white/10 shadow-2xl">
+                <h3 class="font-heading text-2xl font-bold mb-6 text-center">Voluntariado y Patrocinios B2B</h3>
+                <form action="https://formsubmit.co/asociacioncreandosuenos@gmail.com" method="POST" class="space-y-4">
+                    <input type="text" placeholder="Nombre o Empresa" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors">
+                    <input type="email" placeholder="Correo Electrónico" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors">
+                    <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lux_gold transition-colors appearance-none">
+                        <option value="" class="text-slate-800">¿Cómo deseas colaborar?</option>
+                        <option value="voluntario" class="text-slate-800">Ser Voluntario en Brigadas</option>
+                        <option value="patrocinio" class="text-slate-800">Patrocinar Equipo Deportivo (B2B)</option>
+                        <option value="alianza" class="text-slate-800">Alianza Corporativa</option>
+                    </select>
+                    <button type="submit" class="w-full bg-white text-lux_navy font-bold py-4 rounded-xl hover:bg-slate-100 transition-colors uppercase tracking-wider text-sm mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER LUXURY -->
+    <footer class="bg-[#050B1A] text-slate-400 py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <a href="#" class="flex items-center gap-3 mb-4">
+                    <i class="fa-solid fa-hands-holding-child text-lux_gold text-xl"></i>
+                    <span class="font-heading font-black text-xl text-white tracking-tight">Creando Sueños</span>
+                </a>
+                <p class="text-sm font-light">Asociación sin ánimo de lucro dedicada a dignificar y potenciar la vida de los migrantes en España.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 font-heading">Contacto Oficial</h4>
+                <ul class="space-y-2 text-sm font-light">
+                    <li><i class="fa-solid fa-location-dot w-5 text-lux_gold"></i> Madrid, España</li>
+                    <li><i class="fa-solid fa-phone w-5 text-lux_gold"></i> +34 642 49 97 98</li>
+                    <li><i class="fa-solid fa-envelope w-5 text-lux_gold"></i> asociacioncreandosuenos@gmail.com</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 font-heading">Síguenos</h4>
+                <div class="flex gap-4">
+                    <a href="https://instagram.com/creando_suenos_cne" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-lux_gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-lux_gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 text-center flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            <p>© 2026 Asociación Creando Sueños Migrantes por el Mundo.</p>
+            <p>Diseño y Desarrollo Exclusivo por <a href="https://danisid.com" target="_blank" class="text-white hover:text-lux_gold transition-colors font-bold">DaniSid</a> | <a href="https://wa.me/34641868620" target="_blank" class="text-white hover:text-lux_green transition-colors"><i class="fab fa-whatsapp"></i> 641 86 86 20</a></p>
+        </div>
+    </footer>
+
+    <!-- WIDGET FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/34642499798" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-[0_10px_30px_rgba(34,_197,_94,_0.4)] hover:scale-110 hover:bg-green-600 transition-all duration-300">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+</body>
+</html>
