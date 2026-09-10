@@ -32,12 +32,6 @@ El diseño del portal fue desarrollado tras un estudio de patrones UI/UX de orga
 
 ---
 
-## 💶 Modelo de Negocio & Propuesta Comercial IT
-
-* **Desarrollo & Maquetación a Medida:** 200 € (Fraccionado en 2 cuotas de 100 € en Septiembre y Octubre).
-* **Servidor de Alta Velocidad + Dominio + Mantenimiento Técnico:** 99 € / año (o 10 € / mes).
-
----
 
 ## 💻 Stack Tecnológico
 
